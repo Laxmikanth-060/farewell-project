@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        td {
+  height: 50px;
+  vertical-align: center;
+}
+th {
+  height: 50px;
+  vertical-align: center;
+}
+td {
+    /* width: 50px; */
+  text-align: center;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+        </style>
+</head>
+<body><div align="center">
+    <h1>Database</h1>
+    <h4>Filter count: <%= count %></h4> </div>
+    
+    <table>    
+        <tr> 
+            
+          <th>CODE</th>
+            <th>Name</th>
+            <th>Student ID</th>
+            <th>Email</th>
+            <th>
+                <form method="post" action="http://localhost:8008/home/database/filter">
+
+                Status : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <select name="status">
+                 <option value="temp">All</option>  
+                <option value="IN">In</option>
+                <option value="OUT">Out</option>
+            </select>
+                    <button> search</button>
+                </form>
+            </th>
+            <th>Checked-IN Time</th>
+            <th>Update Status</th>
+            
+          </tr>    
+        <% for(i of data){ %>
+             <tr>
+               
+                <td><%= i.id %></td>
+                 <td><%= i.name %></td>
+                 <td><%= i.studentid %></td>
+                 <td><%= i.email %></td>
+                 <td><%= i.status %></td>
+                 <td><%= i.intime %></td>
+                 <td><form method="get" action="http://localhost:8008/home/database/update"><input type="hidden" name="status" value="IN"><input type="hidden" name="id" value="<%= i._id %>"><button id="up">Update</button></form></td>
+             </tr>
+                
+            <% } %>
+     </table>
+
+</body>
+</html>
